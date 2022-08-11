@@ -1,0 +1,39 @@
+// 신대륙 발견
+
+// 예지는 오늘 항해99를 시작했다. 성격이 급한 예지는 항해 1일 차부터 언제 수료를 하게될 지 궁금하다.
+// 항해 1일 차 날짜를 입력하면 98일 이후 항해를 수료하게 되는 날짜를 계산해주는 알고리즘을 만들어보자.
+
+// 1 ≤ month ≤ 12
+// 1 ≤ day ≤ 31 (2월은 28일로 고정합니다, 즉 윤일은 고려하지 않습니다.)
+
+
+public class Main {
+    public String solution(int month, int day) {
+        String answer = "";
+
+        int[] months = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        int[] date = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        int days = day + 98;
+        int idx = month - 1;
+        int mon = month;
+          
+        while(days > date[idx]) {
+          days -= date[idx];
+          idx++;
+          mon++;
+          if(idx == 12) {
+           idx = 0;
+           mon = 1;
+          }
+        } answer = mon+"월 "+days+"일";
+        
+        return answer;
+    }
+
+  
+    public static void main(String[] args) {
+        Main method = new Main();
+        System.out.println(method.solution(1, 18));
+    }
+}
